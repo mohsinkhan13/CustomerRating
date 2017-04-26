@@ -43,7 +43,7 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
         [HttpGet]
         [EnableQuery]
         [ODataRoute("Applications({key})/Features")]
-        public IHttpActionResult GetFeatutes([FromODataUri] Guid key)
+        public IHttpActionResult GetFeatures([FromODataUri] Guid key)
         {
             var collectionPropertyToGet = Url.Request.RequestUri.Segments.Last();
             var application = db.Applications.Include(collectionPropertyToGet)

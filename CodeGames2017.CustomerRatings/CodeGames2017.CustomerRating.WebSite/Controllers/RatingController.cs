@@ -1,7 +1,10 @@
-﻿using CodeGames2017.CustomerRating.WebSite.Models;
+﻿using CodeGames2017.CustomerRating.Model;
+using CodeGames2017.CustomerRating.WebSite.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -25,23 +28,15 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Index(RatingViewModel model) {
-            //if (ModelState.IsValid) {
-                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                //var result = await UserManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded) {
-
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return View("Close");
-                //}
-            //}
-
-            // If we got this far, something failed, redisplay form
-            //return View(model);
+            using (var client = new HttpClient()) {
+                client.BaseAddress = new Uri("http://localhost:28305/");
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await client.GetAsync("odata/Applications");
+                if (response.IsSuccessStatusCode) {
+                    var applications = await response.Content.ReadAsAsync<List<Application>>();
+                }
+            }
+            return View("Close");
         }
     }
 }
