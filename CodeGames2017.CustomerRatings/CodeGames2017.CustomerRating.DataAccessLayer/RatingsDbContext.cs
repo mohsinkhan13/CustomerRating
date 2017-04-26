@@ -3,13 +3,13 @@ using System.Data.Entity;
 
 namespace CodeGames2017.CustomerRating.DataAccessLayer
 {
-    public class DbContext : System.Data.Entity.DbContext
+    public class RatingsDbContext : System.Data.Entity.DbContext
     {
         public DbSet<Rating> Ratings { get; set; }
     
-        public DbContext()
+        public RatingsDbContext()
         {
-            Database.SetInitializer(new DBInitializer());
+            Database.SetInitializer(new RatingsDbInitializer());
             Configuration.LazyLoadingEnabled = false;          
         }
     }

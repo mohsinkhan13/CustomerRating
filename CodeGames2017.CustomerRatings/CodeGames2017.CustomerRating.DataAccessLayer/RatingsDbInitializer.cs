@@ -4,9 +4,9 @@ using System.Data.Entity;
 
 namespace CodeGames2017.CustomerRating.DataAccessLayer
 {
-    public class DBInitializer : DropCreateDatabaseIfModelChanges<DbContext> 
+    public class RatingsDbInitializer : DropCreateDatabaseIfModelChanges<RatingsDbContext> 
     {
-        protected override void Seed(DbContext context)
+        protected override void Seed(RatingsDbContext context)
         {
             Rating rating = null;
             
@@ -15,8 +15,8 @@ namespace CodeGames2017.CustomerRating.DataAccessLayer
                 rating = new Rating
                 {
                     RatingId = Guid.NewGuid(),
-                    Application = "Central",
-                    Section = "Screen " + i,
+                    ApplicationId = "Central",
+                    FeatureId = "Screen " + i,
                     RatingValue = 1,
                     Comment = "",
                     RatedBy = "a@gmail.com"
