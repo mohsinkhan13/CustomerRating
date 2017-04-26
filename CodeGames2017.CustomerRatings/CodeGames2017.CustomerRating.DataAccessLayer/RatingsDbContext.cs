@@ -14,5 +14,15 @@ namespace CodeGames2017.CustomerRating.DataAccessLayer
             Database.SetInitializer(new RatingsDbInitializer());
             Configuration.LazyLoadingEnabled = false;          
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Application>().HasMany(m => m.Features)
+                .WithRequired(f => f.Application).WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Feature>().HasMany(p => p.Ratings)
+                .WithRequired(r => r.Feature).WillCascadeOnDelete(true);
+        }
+
     }
 }
