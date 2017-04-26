@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGames2017.CustomerRatin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGames2017.CustomerRating.Api", "CodeGames2017.CustomerRating.Api\CodeGames2017.CustomerRating.Api.csproj", "{EDC38467-5F6A-47D8-8D12-76E255A4CBF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGames2017.CustomerRating.WebSite", "CodeGames2017.CustomerRating.WebSite\CodeGames2017.CustomerRating.WebSite.csproj", "{30620B0B-2FC9-41D9-8355-FD27F69A34D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{613C2FDA-D381-4EBE-AEE8-7D740E9510D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{613C2FDA-D381-4EBE-AEE8-7D740E9510D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{613C2FDA-D381-4EBE-AEE8-7D740E9510D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30620B0B-2FC9-41D9-8355-FD27F69A34D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30620B0B-2FC9-41D9-8355-FD27F69A34D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30620B0B-2FC9-41D9-8355-FD27F69A34D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30620B0B-2FC9-41D9-8355-FD27F69A34D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDC38467-5F6A-47D8-8D12-76E255A4CBF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDC38467-5F6A-47D8-8D12-76E255A4CBF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDC38467-5F6A-47D8-8D12-76E255A4CBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
