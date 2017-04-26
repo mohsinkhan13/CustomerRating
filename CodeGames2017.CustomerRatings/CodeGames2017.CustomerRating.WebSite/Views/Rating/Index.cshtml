@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Customer Ratings</title>
+</head>
+<body>
+    <div> 
+        <h1>Customer Ratings</h1>
+        <p>Could you please populate and submit the following form?</p>
+        <form action="">
+            <table>
+                <tr><td>Customer email address (optional):</td><td><input type="email" name="RatedBy" /></td></tr>
+                <tr><td>Feature Rating (between 1 and 5):</td><td><input type="number" name="RatingValue" min="1" max="5" /></td></tr>
+                <tr><td>Comment:</td><td><textarea name="Comment" cols="40" rows="5"></textarea></td></tr>
+                <tr><td></td><td><input type="submit" name="Submit" /></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
