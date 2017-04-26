@@ -8,7 +8,9 @@ namespace CodeGames2017.CustomerRating.WebSite.Models
 {
     public class RatingViewModel
     {
+        [Display(Name = "Application")]
         public string Application { get; set; }
+        [Display(Name = "Feature")]
         public string Feature { get; set; }
         [Display(Name="Rating(1-5)")]
         public int RatingValue { get; set; }
