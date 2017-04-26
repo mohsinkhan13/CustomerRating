@@ -9,8 +9,8 @@ namespace CodeGames2017.CustomerRating.Model
     public class Rating
     {
         public Guid RatingId { get; set; }
-        public string ApplicationId { get; set; }
-        public string FeatureId { get; set; }
+        public Application Application { get; set; }
+        public Feature Feature { get; set; }
         public int RatingValue { get; set; }
         public string Comment { get; set; }
         public string RatedBy { get; set; }

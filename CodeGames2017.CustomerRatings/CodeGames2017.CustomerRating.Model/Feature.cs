@@ -11,6 +11,8 @@ namespace CodeGames2017.CustomerRating.Model
         public Guid FeatureId { get; set; }
         public string FeatureName { get; set; }
 
+        public Application Application { get; set; }
+
         public ICollection<Rating> Ratings { get; set; }
     }
 }

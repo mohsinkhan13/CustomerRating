@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CodeGames2017.CustomerRating.DataAccessLayer;
 using CodeGames2017.CustomerRating.Model;
+using System.Web.OData;
 
 namespace CodeGames2017.CustomerRating.Api.Controllers
 {
-    public class RatingsController : ApiController
+    public class RatingsController : ODataController
     {
         private RatingsDbContext db = new RatingsDbContext();
 
@@ -26,9 +22,9 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
 
         // GET: api/Ratings/5
         [ResponseType(typeof(Rating))]
-        public async Task<IHttpActionResult> GetRating(Guid id)
+        public async Task<IHttpActionResult> GetRating([FromODataUri]Guid key)
         {
-            Rating rating = await db.Ratings.FindAsync(id);
+            Rating rating = await db.Ratings.FindAsync(key);
             if (rating == null)
             {
                 return NotFound();
