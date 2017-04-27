@@ -1,6 +1,8 @@
 ﻿using CodeGames2017.CustomerRating.Model;
 using CodeGames2017.CustomerRating.Reporting.Model;
 using CodeGames2017.CustomerRating.Reporting.Models;
+using CodeGames2017CustomerRating;
+using Microsoft.OData.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -14,21 +16,53 @@ namespace CodeGames2017.CustomerRating.Reporting.Controllers
 {
     public class CustomerRatingsController : Controller
     {
+        private CodeGames2017CustomerRatingContainer _context = 
+            new CodeGames2017CustomerRatingContainer(new Uri("http://localhost:28305/odata"));
+
         // GET: CustomerRatings
         public async Task<ActionResult> Index()
         {
-            var httpClient = new HttpClient();
-            var result =  await httpClient.GetStringAsync("http://localhost:28305/odata/Applications");
+            
+            var applications = _context.Applications
+                .Expand(f=>f.Features)
+                .Execute() as QueryOperationResponse<Application>;
 
+            //var viewModel = new List<ApplicationViewModel>();
+            var viewModel = new ApplicationViewModel
+            {
+                Applications = applications
+            };
 
-            //var data = "{\r\n \"@odata.context\":\"http://localhost/ApplicationService/model/$metadata#Edm.String\",\"value\":\"{\\\"Messages\\\":[\\\"message 1\\\",\\\"message 2\\\",\\\"message 3\\\",\\\"message 4\\\"],\\\"IsValidEntity\\\":false}\"\r\n}";
-            var outer = Newtonsoft.Json.JsonConvert.DeserializeObject<OData<string>>(result);
-            //var inner = Newtonsoft.Json.JsonConvert.DeserializeObject<<List<Application>>(outer.value);
+            //foreach (var app in applications)
+            //{
+            //    viewModel.Add(
+            //        new ApplicationViewModel
+            //        {
+            //            ApplicationId = app.ApplicationId,
+            //            ApplicationName = app.ApplicationName
+            //        });
+            //}
 
-
-
-            //var applications = result.Content.().Result;
-            return View();
+            return View(viewModel);
         }
+
+        //public async Task<ActionResult> Details(Guid id)
+        //{
+
+        //    var application = await _context.Applications
+        //        .ByKey(id)
+        //        .GetValueAsync();
+
+        //    var features = _context.Applications.
+
+        //    var viewModel = new ApplicationViewModel
+        //    {
+        //        ApplicationId = application.ApplicationId,
+        //        ApplicationName = application.ApplicationName
+        //    };
+
+
+        //    return View(viewModel);
+        //}
     }
 }
