@@ -22,7 +22,7 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
         // GET: Rating
         public ActionResult Index(string application, string feature, string clientCode) {
             var applications = _context.Applications
-                .ByKey(application)
+                //.ByKey(application)
                  .Execute() as QueryOperationResponse<Application>;
 
             var viewModel = new ApplicationViewModel {
