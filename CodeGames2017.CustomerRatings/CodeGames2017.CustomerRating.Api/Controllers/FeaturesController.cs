@@ -8,24 +8,27 @@ using CodeGames2017.CustomerRating.Model;
 using System.Web.OData;
 using System.Web.OData.Routing;
 using CodeGames2017.CustomerRating.Api.Helpers;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Net;
 
 namespace CodeGames2017.CustomerRating.Api.Controllers
 {
     public class FeaturesController : ODataController
     {
-        private RatingsDbContext db = new RatingsDbContext();
+        private RatingsDbContext _context = new RatingsDbContext();
 
         // GET: api/Features
         public IQueryable<Feature> GetFeatures()
         {
-            return db.Features;
+            return _context.Features;
         }
 
         // GET: api/Features/5
         [ResponseType(typeof(Feature))]
         public async Task<IHttpActionResult> GetFeature([FromODataUri]Guid key)
         {
-            Feature feature = await db.Features.FindAsync(key);
+            Feature feature = await _context.Features.FindAsync(key);
             if (feature == null)
             {
                 return NotFound();
@@ -40,7 +43,7 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
         public IHttpActionResult GetFeatures([FromODataUri] Guid key)
         {
             var collectionPropertyToGet = Url.Request.RequestUri.Segments.Last();
-            var feature = db.Features.Include(collectionPropertyToGet)
+            var feature = _context.Features.Include(collectionPropertyToGet)
                 .FirstOrDefault(p => p.FeatureId == key);
 
             if (feature == null)
@@ -58,19 +61,43 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
             return this.CreateOkHttpActionResult(collectionPropertyValue);
         }
 
+        [HttpPost]
+        [ODataRoute("Features({key})/Ratings")]
+        public IHttpActionResult CreateRatingForFeature([FromODataUri] Guid key,
+            Rating rating)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var feature = _context.Features.FirstOrDefault(f => f.FeatureId == key);
+            if (feature == null)
+            {
+                return NotFound();
+            }
+
+            rating.Feature = feature;
+
+            _context.Ratings.Add(rating);
+            _context.SaveChanges();
+
+            return Created(rating);
+        }
+
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _context.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool FeatureExists(Guid id)
         {
-            return db.Features.Count(e => e.FeatureId == id) > 0;
+            return _context.Features.Count(e => e.FeatureId == id) > 0;
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using CodeGames2017.CustomerRating.Model;
+﻿using CodeGames2017.CustomerRating.DataAccessLayer;
+using CodeGames2017.CustomerRating.Model;
 using CodeGames2017.CustomerRating.WebSite.Models;
+using CodeGames2017.CustomerRatings.DataService;
 using CodeGames2017CustomerRating;
 using Microsoft.OData.Client;
 using Newtonsoft.Json;
@@ -18,6 +20,7 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
         private CodeGames2017CustomerRatingContainer _context =
             new CodeGames2017CustomerRatingContainer(new Uri("http://localhost:28305/odata"));
 
+        private RatingsDbContext _db = new RatingsDbContext();
 
         // GET: Rating
         public async Task<ActionResult> Index(Guid applicationId, Guid featureId, string clientCode) {
@@ -45,8 +48,44 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Index(RatingViewModel model) {
+            //var application = await _context.Applications
+            //    .ByKey(model.ApplicationId)
+            //    .GetValueAsync();
 
-            return null; 
+            var feature = await _context.Features
+                .ByKey(model.FeatureId)
+                .GetValueAsync();
+
+            //var feature = _context.Features
+            //    .Expand(r => r.Ratings)
+            //    .FirstOrDefault(r => r.FeatureId == model.FeatureId);
+                
+            //var ratings = await _context.Ratings
+            //    .ByKey
+
+                         
+
+            var rating = new RatingAppDomain
+            {
+                Feature = feature.FeatureId,
+                ClientCode = model.ClientCode,
+                Comment = model.Comment,
+                RatedBy = model.RatedBy,
+                RatingValue = model.RatingValue,
+                RatingId = Guid.NewGuid()
+            };
+
+
+
+            //_context.UpdateObject(feature);
+            ////_context.AddToRatings(rating);
+            //_context.SaveChanges(SaveChangesOptions.ReplaceOnUpdate);
+
+
+            //var service = new Service();
+            //service.AddRating(rating);
+
+            return new HttpStatusCodeResult(200); 
         }
     }
 }
