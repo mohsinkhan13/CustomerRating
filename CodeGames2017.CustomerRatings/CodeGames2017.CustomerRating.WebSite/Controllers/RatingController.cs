@@ -20,15 +20,23 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
 
 
         // GET: Rating
-        public ActionResult Index(string application, string feature, string clientCode) {
-            var applications = _context.Applications
-                //.ByKey(application)
-                 .Execute() as QueryOperationResponse<Application>;
+        public async Task<ActionResult> Index(Guid applicationId, Guid featureId, string clientCode) {
+            var application = await _context.Applications
+                .ByKey(applicationId)
+                .GetValueAsync();
 
-            var viewModel = new ApplicationViewModel {
-                Applications = applications
+            var applicationFeature = await _context.Features
+                .ByKey(featureId)
+                .GetValueAsync();
+
+            var viewModel = new RatingViewModel
+            {
+                ClientCode = clientCode,
+                ApplicationId = application.ApplicationId,
+                Application = application.ApplicationName,
+                FeatureId = applicationFeature.FeatureId,
+                Feature = applicationFeature.FeatureName
             };
-
 
             return View(viewModel);
         }
@@ -37,15 +45,6 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Index(RatingViewModel model) {
-            //var applications = _context.Applications
-            //    .Execute() as QueryOperationResponse<Application>;
-
-            //var viewModel = new ApplicationViewModel {
-            //    Applications = applications
-            //};
-
-
-            //return View(viewModel);
 
             return null; 
         }

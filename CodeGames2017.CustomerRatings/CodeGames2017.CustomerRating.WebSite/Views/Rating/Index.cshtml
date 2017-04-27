@@ -39,6 +39,22 @@
         </div>
     </div>
     <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(m => m.ClientCode)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(m => m.ApplicationId)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.HiddenFor(m => m.FeatureId)
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Submit" />
         </div>
