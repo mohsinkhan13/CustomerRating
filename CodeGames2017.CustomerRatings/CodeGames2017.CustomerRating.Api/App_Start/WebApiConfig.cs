@@ -38,6 +38,7 @@ namespace CodeGames2017.CustomerRating.Api
             builder.EntitySet<Application>("Applications");
             builder.EntitySet<Feature>("Features");
             builder.EntitySet<Rating>("Ratings");
+            builder.EntitySet<Report>("Report");
 
             return builder.GetEdmModel();
         }

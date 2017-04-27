@@ -8,6 +8,7 @@ namespace CodeGames2017.CustomerRating.DataAccessLayer
         public DbSet<Application> Applications { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Report> Report { get; set; }
 
         public RatingsDbContext()
         {
