@@ -201,6 +201,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OData.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\ReportingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CustomerRatingsODataService\Reference.cs" />
     <Compile Include="Startup.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Views\CustomerRatings\Index.cshtml" />
     <Content Include="Service References\CustomerRatingsODataService\ConnectedService.json" />
     <Content Include="Views\CustomerRatings\Details.cshtml" />
+    <Content Include="Views\CustomerRatings\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

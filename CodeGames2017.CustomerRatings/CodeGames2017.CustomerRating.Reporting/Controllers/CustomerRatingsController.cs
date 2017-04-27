@@ -26,9 +26,25 @@ namespace CodeGames2017.CustomerRating.Reporting.Controllers
             var applications = _context.Applications
                 .Execute() as QueryOperationResponse<Application>;
 
-            var viewModel = new ApplicationViewModel
+            var viewModel = new ReportingViewModel
             {
                 Applications = applications
+            };
+
+            return View(viewModel);
+        }
+
+        public async Task<ActionResult> Report(Guid applicationId)
+        {
+            var application = await _context.Applications
+                .ByKey(applicationId)
+                .GetValueAsync();
+
+            var features = _context.Features
+                .Execute() as QueryOperationResponse<Feature>;
+
+            var viewModel = new ReportingViewModel {
+                Features = features
             };
 
             return View(viewModel);
