@@ -1,5 +1,7 @@
 ﻿using CodeGames2017.CustomerRating.Model;
 using CodeGames2017.CustomerRating.WebSite.Models;
+using CodeGames2017CustomerRating;
+using Microsoft.OData.Client;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,30 +15,39 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
 {
     public class RatingController : Controller
     {
+        private CodeGames2017CustomerRatingContainer _context =
+            new CodeGames2017CustomerRatingContainer(new Uri("http://localhost:28305/odata"));
+
+
         // GET: Rating
         public ActionResult Index(string application, string feature, string clientCode) {
-            var rating = new RatingViewModel {
-                Application = application,
-                Feature = feature,
-                ClientCode = clientCode
+            var applications = _context.Applications
+                .ByKey(application)
+                 .Execute() as QueryOperationResponse<Application>;
+
+            var viewModel = new ApplicationViewModel {
+                Applications = applications
             };
 
-            return View(rating);
+
+            return View(viewModel);
         }
 
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Index(RatingViewModel model) {
-            using (var client = new HttpClient()) {
-                client.BaseAddress = new Uri("http://localhost:28305/");
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                var response = await client.GetAsync("odata/Applications");
-                if (response.IsSuccessStatusCode) {
-                    var applications = await response.Content.ReadAsAsync<List<Application>>();
-                }
-            }
-            return View("Close");
+            //var applications = _context.Applications
+            //    .Execute() as QueryOperationResponse<Application>;
+
+            //var viewModel = new ApplicationViewModel {
+            //    Applications = applications
+            //};
+
+
+            //return View(viewModel);
+
+            return null; 
         }
     }
 }
