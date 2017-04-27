@@ -1,7 +1,12 @@
-﻿using CodeGames2017.CustomerRating.WebSite.Models;
+﻿using CodeGames2017.CustomerRating.Model;
+using CodeGames2017.CustomerRating.WebSite.Models;
+using CodeGames2017CustomerRating;
+using Microsoft.OData.Client;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -10,38 +15,39 @@ namespace CodeGames2017.CustomerRating.WebSite.Controllers
 {
     public class RatingController : Controller
     {
+        private CodeGames2017CustomerRatingContainer _context =
+            new CodeGames2017CustomerRatingContainer(new Uri("http://localhost:28305/odata"));
+
+
         // GET: Rating
         public ActionResult Index(string application, string feature, string clientCode) {
-            var rating = new RatingViewModel {
-                Application = application,
-                Feature = feature,
-                ClientCode = clientCode
+            var applications = _context.Applications
+                //.ByKey(application)
+                 .Execute() as QueryOperationResponse<Application>;
+
+            var viewModel = new ApplicationViewModel {
+                Applications = applications
             };
 
-            return View(rating);
+
+            return View(viewModel);
         }
 
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Index(RatingViewModel model) {
-            //if (ModelState.IsValid) {
-                //var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                //var result = await UserManager.CreateAsync(user, model.Password);
-                //if (result.Succeeded) {
+            //var applications = _context.Applications
+            //    .Execute() as QueryOperationResponse<Application>;
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+            //var viewModel = new ApplicationViewModel {
+            //    Applications = applications
+            //};
 
-                    return View("Close");
-                //}
-            //}
 
-            // If we got this far, something failed, redisplay form
-            //return View(model);
+            //return View(viewModel);
+
+            return null; 
         }
     }
 }
