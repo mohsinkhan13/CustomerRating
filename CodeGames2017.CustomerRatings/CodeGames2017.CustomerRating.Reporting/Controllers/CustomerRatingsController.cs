@@ -26,7 +26,7 @@ namespace CodeGames2017.CustomerRating.Reporting.Controllers
             var applications = _context.Applications
                 .Execute() as QueryOperationResponse<Application>;
 
-            var viewModel = new ReportingViewModel
+            var viewModel = new ApplicationViewModel
             {
                 Applications = applications
             };
@@ -34,18 +34,47 @@ namespace CodeGames2017.CustomerRating.Reporting.Controllers
             return View(viewModel);
         }
 
-        public async Task<ActionResult> Report(Guid applicationId)
+        public async Task<ActionResult> Feature(Guid applicationId)
         {
-            var application = await _context.Applications
-                .ByKey(applicationId)
-                .GetValueAsync();
+            var applications = await _context.Applications
+                .Expand(a => a.Features)
+                .ExecuteAsync() as QueryOperationResponse<Application>;
 
-            var features = _context.Features
-                .Execute() as QueryOperationResponse<Feature>;
+            var app = applications.FirstOrDefault(x => x.ApplicationId == applicationId);
+            var appF = app.Features.ToList();
 
-            var viewModel = new ReportingViewModel {
-                Features = features
+            
+
+            var viewModel = new FeatureViewModel
+            {
+                Features = appF
             };
+
+
+            //foreach (var feature in appFeatures)
+            //{
+            //    var count = feature.Ratings.Count();
+            //    var avg = feature.Ratings.Sum(x=>x.RatingValue) / count;
+            //    var one = feature.Ratings.Where(x => x.RatingValue == 1).Count();
+            //    var two = feature.Ratings.Where(x => x.RatingValue == 2).Count();
+            //    var three = feature.Ratings.Where(x => x.RatingValue == 3).Count();
+            //    var four = feature.Ratings.Where(x => x.RatingValue == 4).Count();
+            //    var five = feature.Ratings.Where(x => x.RatingValue == 5).Count();
+            //    var rptData = new ReportData
+            //    {
+            //        TotalRatings = count,
+            //        AvgRating = avg,
+            //        Rating1 = one,
+            //        Rating2 = two, 
+            //        Rating3 = three, 
+            //        Rating4 = four, 
+            //        Rating5 = five
+            //    };
+
+            //}
+           
+
+            //view
 
             return View(viewModel);
         }

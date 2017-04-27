@@ -7,9 +7,9 @@
 
 <h2>Report</h2>
 
-<table>
-    @foreach (var app in Model.Applications) {
-        <li>@app.ApplicationId, @app.ApplicationName</li>
+<div>
+    @foreach (var feature in Model.Features) {
+        <li>@feature.FeatureId, @feature.FeatureName</li>
 
     }
-</table>
+</div>

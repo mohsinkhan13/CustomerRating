@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeGames2017.CustomerRating.Reporting.Model
+namespace CodeGames2017.CustomerRating.Reporting.Models
 {
     public class ApplicationViewModel
     {

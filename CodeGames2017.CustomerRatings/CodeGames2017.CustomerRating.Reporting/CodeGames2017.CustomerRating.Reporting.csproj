@@ -195,8 +195,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Application.cs" />
-    <Compile Include="Models\Feature.cs" />
+    <Compile Include="Models\ApplicationViewModel.cs" />
+    <Compile Include="Models\FeatureViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OData.cs" />
@@ -265,6 +265,7 @@
     <Content Include="Service References\CustomerRatingsODataService\ConnectedService.json" />
     <Content Include="Views\CustomerRatings\Details.cshtml" />
     <Content Include="Views\CustomerRatings\Report.cshtml" />
+    <Content Include="Views\CustomerRatings\Feature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

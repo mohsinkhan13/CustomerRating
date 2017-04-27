@@ -1,4 +1,4 @@
-﻿@model CodeGames2017.CustomerRating.Reporting.Models.ReportingViewModel
+﻿@model CodeGames2017.CustomerRating.Reporting.Models.ApplicationViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -10,7 +10,7 @@
 <table>
     @foreach (var app in Model.Applications)
     {
-        <tr><td>@app.ApplicationId</td><td>@app.ApplicationName</td><td>@Html.ActionLink("View Report", "Report", "CustomerRatings", new { @class = "elements", @applicationId = @app.ApplicationId }, null)</td></tr>
+        <tr><td>@app.ApplicationId</td><td>@app.ApplicationName</td><td>@Html.ActionLink("View Report", "Feature", "CustomerRatings", new { @class = "elements", @applicationId = @app.ApplicationId }, null)</td></tr>
 
     }
 </table>

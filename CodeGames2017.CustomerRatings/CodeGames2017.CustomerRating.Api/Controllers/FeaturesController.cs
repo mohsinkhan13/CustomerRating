@@ -19,13 +19,17 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
         private RatingsDbContext _context = new RatingsDbContext();
 
         // GET: api/Features
+        [EnableQuery]
         public IQueryable<Feature> GetFeatures()
         {
             return _context.Features;
         }
 
         // GET: api/Features/5
+
+        [HttpGet]
         [ResponseType(typeof(Feature))]
+        [EnableQuery]
         public async Task<IHttpActionResult> GetFeature([FromODataUri]Guid key)
         {
             Feature feature = await _context.Features.FindAsync(key);
