@@ -7,15 +7,10 @@
 
 <h2>Index</h2>
 
-<ul>
+<table>
     @foreach (var app in Model.Applications)
     {
         <li>@app.ApplicationId, @app.ApplicationName</li>
-        <ul>
-            @foreach (var feature in app.Features)
-            {
-                <li>@feature.FeatureId, @feature.FeatureName</li>
-            }
-        </ul>
+
     }
-</ul>
+</table>

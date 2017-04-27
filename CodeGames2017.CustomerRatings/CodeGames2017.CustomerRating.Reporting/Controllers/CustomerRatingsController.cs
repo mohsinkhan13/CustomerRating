@@ -24,24 +24,12 @@ namespace CodeGames2017.CustomerRating.Reporting.Controllers
         {
             
             var applications = _context.Applications
-                .Expand(f=>f.Features)
                 .Execute() as QueryOperationResponse<Application>;
 
-            //var viewModel = new List<ApplicationViewModel>();
             var viewModel = new ApplicationViewModel
             {
                 Applications = applications
             };
-
-            //foreach (var app in applications)
-            //{
-            //    viewModel.Add(
-            //        new ApplicationViewModel
-            //        {
-            //            ApplicationId = app.ApplicationId,
-            //            ApplicationName = app.ApplicationName
-            //        });
-            //}
 
             return View(viewModel);
         }
