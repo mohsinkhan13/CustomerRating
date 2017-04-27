@@ -7,6 +7,7 @@ using System.Web.Http.Description;
 using CodeGames2017.CustomerRating.DataAccessLayer;
 using CodeGames2017.CustomerRating.Model;
 using System.Web.OData;
+using System.Web.OData.Routing;
 
 namespace CodeGames2017.CustomerRating.Api.Controllers
 {
@@ -35,6 +36,7 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
 
         // POST: api/Ratings
         [ResponseType(typeof(Rating))]
+        [ODataRoute("Ratings")]
         public async Task<IHttpActionResult> PostRating(Rating rating)
         {
             if (!ModelState.IsValid)
@@ -60,7 +62,7 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = rating.RatingId }, rating);
+            return Created(rating);
         }
 
         protected override void Dispose(bool disposing)

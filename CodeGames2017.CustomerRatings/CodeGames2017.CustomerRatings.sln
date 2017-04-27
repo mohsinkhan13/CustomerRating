@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGames2017.CustomerRatin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGames2017.CustomerRating.Reporting", "CodeGames2017.CustomerRating.Reporting\CodeGames2017.CustomerRating.Reporting.csproj", "{7B776B15-CAD0-4ED4-9616-A4DA253B16E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGames2017.CustomerRatings.DataService", "CodeGames2017.CustomerRatings.DataService\CodeGames2017.CustomerRatings.DataService.csproj", "{2DE0CA5F-A7A1-44B5-A33B-6E36FB57D86C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7B776B15-CAD0-4ED4-9616-A4DA253B16E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B776B15-CAD0-4ED4-9616-A4DA253B16E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B776B15-CAD0-4ED4-9616-A4DA253B16E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DE0CA5F-A7A1-44B5-A33B-6E36FB57D86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DE0CA5F-A7A1-44B5-A33B-6E36FB57D86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DE0CA5F-A7A1-44B5-A33B-6E36FB57D86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DE0CA5F-A7A1-44B5-A33B-6E36FB57D86C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

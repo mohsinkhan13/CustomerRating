@@ -277,6 +277,16 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGames2017.CustomerRating.DataAccessLayer\CodeGames2017.CustomerRating.DataAccessLayer.csproj">
+      <Project>{613C2FDA-D381-4EBE-AEE8-7D740E9510D5}</Project>
+      <Name>CodeGames2017.CustomerRating.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGames2017.CustomerRatings.DataService\CodeGames2017.CustomerRatings.DataService.csproj">
+      <Project>{2DE0CA5F-A7A1-44B5-A33B-6E36FB57D86C}</Project>
+      <Name>CodeGames2017.CustomerRatings.DataService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
