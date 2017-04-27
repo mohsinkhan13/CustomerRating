@@ -1,0 +1,42 @@
+﻿@model CodeGames2017.CustomerRating.Reporting.Model.ApplicationViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ApplicationViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationName)
+        </dd>
+
+    </dl>
+    <ul>
+        @foreach (var feature in Model.Features)
+            {
+            <li>@feature.FeatureId - , @feature.FeatureName</li>
+        }
+    </ul>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

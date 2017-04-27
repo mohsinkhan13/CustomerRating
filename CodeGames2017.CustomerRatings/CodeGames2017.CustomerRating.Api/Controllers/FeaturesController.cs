@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -46,20 +40,20 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
         public IHttpActionResult GetFeatures([FromODataUri] Guid key)
         {
             var collectionPropertyToGet = Url.Request.RequestUri.Segments.Last();
-            var application = db.Features.Include(collectionPropertyToGet)
+            var feature = db.Features.Include(collectionPropertyToGet)
                 .FirstOrDefault(p => p.FeatureId == key);
 
-            if (application == null)
+            if (feature == null)
             {
                 return NotFound();
             }
 
-            if (!application.HasProperty(collectionPropertyToGet))
+            if (!feature.HasProperty(collectionPropertyToGet))
             {
                 return NotFound();
             }
 
-            var collectionPropertyValue = application.GetValue(collectionPropertyToGet);
+            var collectionPropertyValue = feature.GetValue(collectionPropertyToGet);
 
             return this.CreateOkHttpActionResult(collectionPropertyValue);
         }

@@ -22,12 +22,14 @@ namespace CodeGames2017.CustomerRating.Api.Controllers
         private RatingsDbContext db = new RatingsDbContext();
 
         // GET: api/Applications
+        [EnableQuery]
         public IQueryable<Application> GetApplications()
         {
             return db.Applications;
         }
 
         // GET: api/Applications/5
+        [EnableQuery]
         [ResponseType(typeof(Application))]
         public async Task<IHttpActionResult> GetApplication([FromODataUri]Guid key)
         {
